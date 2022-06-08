@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+int findMajorityElement(int arr[], int n) {
+	// Write your code here.
+    int flag = floor(n/2);
+    unordered_map<int,int> mp;
+    for(int i=0;i<n;i++){
+        mp[arr[i]]++;
+    }
+    for(auto&it: mp){
+        if(it.second>flag){
+            return it.first;
+        }
+    }
+    return -1;
+}
