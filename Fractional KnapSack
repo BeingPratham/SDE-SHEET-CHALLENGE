@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+bool comp(pair<int,int> &a, pair<int,int> &b){
+    double r1 = (double)a.second / (double)a.first;
+    double r2 = (double)b.second / (double)b.first;
+    return r1>r2;
+}
+double maximumValue (vector<pair<int, int>>& items, int n, int w)
+{
+    // Write your code here.
+    // ITEMS contains {weight, value} pairs.
+    int curWeight=0;
+    double ans=0.0;
+    sort(items.begin(), items.end(), comp);
+    for(int i=0;i<n;i++){
+        if(curWeight+items[i].first <= w){
+            curWeight+=items[i].first;
+            ans+=items[i].second;
+        }
+        else{
+            int remain = w-curWeight;
+            ans+=((double)items[i].second/(double)items[i].first)*remain;
+            break;
+        }
+    }
+    return ans;
+}
